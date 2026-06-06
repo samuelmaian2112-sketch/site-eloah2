@@ -1,42 +1,82 @@
-/* 🌸 FLOR CSS (ROSINHA AQUARELA) */
-.flower {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  position: relative;
-  top: 2px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-/* pétalas */
-.flower::before,
-.flower::after {
-  content: "";
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  background: radial-gradient(circle, #ff9ecb, #ff6fa3);
+body {
+  overflow-x: hidden;
+  background: #000;
+}
+
+/* 🌸 INTRO */
+#intro {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle, #1a1a1a, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.intro-card {
+  text-align: center;
+  color: white;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* 🌿 SEÇÕES */
+.section {
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 🎨 CORES */
+.red { background: #6b1e1e; }
+.blue { background: #1e3a6b; }
+.yellow { background: #6b5e1e; }
+.green { background: #1e6b3a; }
+.purple { background: #3b1e6b; }
+.pink { background: #6b1e4f; }
+.final { background: #111; }
+
+/* 🌬️ PÉTALAS */
+.petal {
+  position: fixed;
+  top: -10px;
+  width: 12px;
+  height: 12px;
+  background: pink;
   border-radius: 50%;
-  opacity: 0.9;
-}
-
-/* segunda camada de pétalas */
-.flower::after {
-  transform: rotate(45deg);
   opacity: 0.7;
+  animation: fall linear infinite;
 }
 
-/* leve brilho */
-.pink-flower {
-  filter: blur(0.2px);
-  animation: floatFlower 4s ease-in-out infinite;
-}
-
-@keyframes floatFlower {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-2px) scale(1.05);
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
   }
 }
