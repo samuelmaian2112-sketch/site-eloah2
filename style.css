@@ -1,115 +1,42 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Arial", sans-serif;
+/* 🌸 FLOR CSS (ROSINHA AQUARELA) */
+.flower {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  position: relative;
+  top: 2px;
 }
 
-body {
-  overflow-x: hidden;
-  background: #000;
-  color: white;
-}
-
-/* 🌌 INTRO */
-#intro {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle, #1a1a1a, #000);
-  z-index: 9999;
-}
-
-.intro-content {
-  text-align: center;
-  animation: fadeIn 2s ease;
-}
-
-.intro-content h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.intro-content p {
-  opacity: 0.7;
-  margin-bottom: 20px;
-}
-
-button {
-  padding: 12px 20px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  background: white;
-  color: black;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
-}
-
-/* 🌿 JARDIM */
-#garden {
-  opacity: 0;
-  transition: 1.5s ease;
-}
-
-.section {
-  min-height: 100vh;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 1s ease;
-}
-
-.section.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* 🎨 CORES AQUARELA */
-.red { background: #6b1e1e; }
-.blue { background: #1e3a6b; }
-.yellow { background: #6b5e1e; }
-.green { background: #1e6b3a; }
-.purple { background: #3b1e6b; }
-.pink { background: #6b1e4f; }
-.final { background: #111; }
-
-/* 🌬️ PÉTALAS */
-#petals {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 10;
-}
-
-.petal {
+/* pétalas */
+.flower::before,
+.flower::after {
+  content: "";
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background: rgba(255,255,255,0.8);
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle, #ff9ecb, #ff6fa3);
   border-radius: 50%;
-  animation: fall linear infinite;
-  opacity: 0.6;
+  opacity: 0.9;
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(360deg);
+/* segunda camada de pétalas */
+.flower::after {
+  transform: rotate(45deg);
+  opacity: 0.7;
+}
+
+/* leve brilho */
+.pink-flower {
+  filter: blur(0.2px);
+  animation: floatFlower 4s ease-in-out infinite;
+}
+
+@keyframes floatFlower {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
   }
-}
-
-/* ✨ ANIMAÇÕES */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(1.05); }
-  to { opacity: 1; transform: scale(1); }
+  50% {
+    transform: translateY(-2px) scale(1.05);
+  }
 }
