@@ -2,51 +2,71 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 body {
   overflow-x: hidden;
   background: #000;
-}
-
-/* 🌸 INTRO */
-#intro {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: radial-gradient(circle, #1a1a1a, #000);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.intro-card {
-  text-align: center;
   color: white;
 }
 
-button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
+/* 🌌 INTRO */
+#intro {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #1a1a1a, #000);
+  z-index: 9999;
 }
 
-/* 🌿 SEÇÕES */
+.intro-content {
+  text-align: center;
+  animation: fadeIn 2s ease;
+}
+
+.intro-content h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.intro-content p {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: white;
+  color: black;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* 🌿 JARDIM */
+#garden {
+  opacity: 0;
+  transition: 1.5s ease;
+}
+
 .section {
   min-height: 100vh;
   padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white;
   text-align: center;
   opacity: 0;
   transform: translateY(30px);
-  transition: all 1s ease;
+  transition: 1s ease;
 }
 
 .section.show {
@@ -54,7 +74,7 @@ button {
   transform: translateY(0);
 }
 
-/* 🎨 CORES */
+/* 🎨 CORES AQUARELA */
 .red { background: #6b1e1e; }
 .blue { background: #1e3a6b; }
 .yellow { background: #6b5e1e; }
@@ -64,19 +84,32 @@ button {
 .final { background: #111; }
 
 /* 🌬️ PÉTALAS */
-.petal {
+#petals {
   position: fixed;
-  top: -10px;
-  width: 12px;
-  height: 12px;
-  background: pink;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.petal {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.8);
   border-radius: 50%;
-  opacity: 0.7;
   animation: fall linear infinite;
+  opacity: 0.6;
 }
 
 @keyframes fall {
   to {
     transform: translateY(110vh) rotate(360deg);
   }
+}
+
+/* ✨ ANIMAÇÕES */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: scale(1); }
 }
