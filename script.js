@@ -1,41 +1,45 @@
-// 🌸 entrar no jardim
+const intro = document.getElementById("intro");
+const garden = document.getElementById("garden");
+const music = document.getElementById("music");
+
+/* 🌸 ENTRAR NO JARDIM */
 function enterGarden() {
-  document.getElementById("intro").style.display = "none";
+  intro.style.opacity = "0";
 
-  // música (precisa clique do usuário)
-  const music = document.getElementById("music");
-  if (music) music.play();
+  setTimeout(() => {
+    intro.style.display = "none";
+    garden.style.opacity = "1";
 
-  startPetals();
-  revealSections();
+    startMusic();
+    startPetals();
+    startScrollReveal();
+  }, 1200);
 }
 
-// 🌿 revelar seções no scroll
-function revealSections() {
-  const sections = document.querySelectorAll(".section");
+/* 🎵 MÚSICA */
+function startMusic() {
+  if (!music) return;
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      }
-    });
-  }, { threshold: 0.2 });
-
-  sections.forEach(sec => observer.observe(sec));
+  music.volume = 0.2;
+  music.play().catch(() => {
+    // bloqueio de autoplay (normal no navegador)
+    console.log("Usuário precisa interagir para tocar áudio");
+  });
 }
 
-// 🌬️ pétalas leves (sem lag)
+/* 🌬️ PÉTALAS LEVES */
 function startPetals() {
   const container = document.getElementById("petals");
 
+  // cria inicial
   for (let i = 0; i < 18; i++) {
     createPetal(container);
   }
 
+  // continua criando
   setInterval(() => {
     createPetal(container);
-  }, 800);
+  }, 600);
 }
 
 function createPetal(container) {
@@ -43,12 +47,29 @@ function createPetal(container) {
   petal.classList.add("petal");
 
   petal.style.left = Math.random() * 100 + "vw";
-  petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+  petal.style.animationDuration = (4 + Math.random() * 5) + "s";
   petal.style.opacity = Math.random();
 
   container.appendChild(petal);
 
   setTimeout(() => {
     petal.remove();
-  }, 10000);
+  }, 9000);
+}
+
+/* 🌿 APARECER SEÇÕES NO SCROLL */
+function startScrollReveal() {
+  const sections = document.querySelectorAll(".section");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  sections.forEach(sec => observer.observe(sec));
 }
