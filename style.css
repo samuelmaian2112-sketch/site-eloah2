@@ -7,71 +7,100 @@
 
 body {
   overflow-x: hidden;
+  color: white;
   background: #000;
 }
 
-/* 🌸 INTRO */
+/* 🎬 INTRO */
 #intro {
   position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: radial-gradient(circle, #1a1a1a, #000);
+  inset: 0;
+  background: radial-gradient(circle at top, #2a2a2a, #000);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
 }
 
-.intro-card {
+.intro-content {
   text-align: center;
-  color: white;
 }
 
 button {
   margin-top: 20px;
   padding: 12px 20px;
+  border-radius: 30px;
   border: none;
-  border-radius: 20px;
   cursor: pointer;
 }
 
-/* 🌿 SEÇÕES */
+/* 🌿 JARDIM */
+#garden {
+  opacity: 0;
+  transition: 1.2s ease;
+}
+
 .section {
   min-height: 100vh;
   padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white;
   text-align: center;
   opacity: 0;
   transform: translateY(30px);
-  transition: all 1s ease;
+  transition: 1s ease;
 }
 
+/* aparece no scroll */
 .section.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* 🎨 CORES */
-.red { background: #6b1e1e; }
-.blue { background: #1e3a6b; }
-.yellow { background: #6b5e1e; }
-.green { background: #1e6b3a; }
-.purple { background: #3b1e6b; }
-.pink { background: #6b1e4f; }
-.final { background: #111; }
+/* 🎨 CORES AQUARELA (IMPORTANTE — AQUI QUE VOLTA A VIDA) */
+.red {
+  background: linear-gradient(135deg, #7a1f1f, #3a0f0f);
+}
+
+.blue {
+  background: linear-gradient(135deg, #1e3a6b, #0f1f3a);
+}
+
+.yellow {
+  background: linear-gradient(135deg, #6b5e1e, #3a330f);
+}
+
+.green {
+  background: linear-gradient(135deg, #1e6b3a, #0f3a1f);
+}
+
+.purple {
+  background: linear-gradient(135deg, #3b1e6b, #1a0f3a);
+}
+
+.pink {
+  background: linear-gradient(135deg, #6b1e4f, #3a0f2a);
+}
+
+.final {
+  background: radial-gradient(circle, #111, #000);
+}
 
 /* 🌬️ PÉTALAS */
-.petal {
+#petals {
   position: fixed;
-  top: -10px;
-  width: 12px;
-  height: 12px;
-  background: pink;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.8);
   border-radius: 50%;
-  opacity: 0.7;
   animation: fall linear infinite;
 }
 
